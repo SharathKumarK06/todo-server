@@ -1,1 +1,5 @@
+# API testing file
+todo.http
+
+# todo-server binary
 todo-server
