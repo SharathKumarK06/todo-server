@@ -2,15 +2,48 @@
 GET http://localhost:8080/todos
 Content-Type: application/json
 
+
 ### Create todos
-POST http://localhost:8080/todos/create
+POST http://localhost:8080/todos
 Content-Type: application/json
 
 {
-    "id": 2,
     "title": "Second todo",
     "description": "Second todo is also test"
+
 }
 
 
+### Update todo
+PATCH  http://localhost:8080/todos/update/3
+Content-Type: application/json
+
+{
+    "title": "Third todo",
+    "description": "This is a third test todo",
+    "done": true
+}
+
+
+### Create todos
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+    "id": 56,
+    "title": "Is this 56th todo?",
+    "description": "This todo is also a test"
+
+}
+
+
+### Update todo
+PATCH  http://localhost:8080/todos/update/4
+Content-Type: application/json
+
+{
+    "title": "This is not a 56th todo",
+    "description": "This is a test todo",
+    "done": true
+}
 
