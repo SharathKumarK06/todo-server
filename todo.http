@@ -10,7 +10,6 @@ Content-Type: application/json
 {
     "title": "Second todo",
     "description": "Second todo is also test"
-
 }
 
 
@@ -44,6 +43,16 @@ Content-Type: application/json
 {
     "title": "This is not a 56th todo",
     "description": "This is a test todo",
+    "done": true
+}
+
+
+### Create todos empty title
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+    "description": "Second todo is also test",
     "done": true
 }
 

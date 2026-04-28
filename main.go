@@ -14,7 +14,7 @@ var Id int = 1
 
 type Todo struct {
 	ID          int       `json:"id"`
-	Title       *string   `json:"title"`
+	Title       *string   `json:"title" binding:"required"`
 	Description *string   `json:"description"`
 	Done        *bool     `json:"done"`
 	CreatedAt   time.Time `json:"created_at"`
@@ -47,13 +47,6 @@ func createTodo(c *gin.Context) {
 	if err := c.ShouldBindJSON(&todo); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Invalid request",
-		})
-		return
-	}
-
-	if *todo.Title == "" {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Title required!",
 		})
 		return
 	}
