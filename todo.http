@@ -1,0 +1,16 @@
+### Get todos
+GET http://localhost:8080/todos
+Content-Type: application/json
+
+### Create todos
+POST http://localhost:8080/todos/create
+Content-Type: application/json
+
+{
+    "id": 2,
+    "title": "Second todo",
+    "description": "Second todo is also test"
+}
+
+
+
