@@ -120,7 +120,7 @@ func main() {
 	// Router
 	router.GET("/todos", getTodos)
 	router.POST("/todos", createTodo)
-	router.PATCH("/todos/update/:id", updateTodo)
+	router.PATCH("/todos/:id", updateTodo)
 
 	router.Run("localhost:8080")
 }
