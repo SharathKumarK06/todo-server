@@ -1,0 +1,63 @@
+### Update title of todo 1
+PATCH http://localhost:8080/todos/1
+Content-Type: application/json
+
+{
+    "title": "This is first todo"
+}
+
+
+### Update todo 1's 'done' status
+PATCH http://localhost:8080/todos/1
+Content-Type: application/json
+
+{
+    "done": false
+}
+
+
+### Try to empty the `required` field `title`
+PATCH http://localhost:8080/todos/1
+Content-Type: application/json
+
+{
+    "title": ""
+}
+
+
+### Update todo 1's id
+PATCH http://localhost:8080/todos/1
+Content-Type: application/json
+
+{
+    "id": 3
+}
+
+
+### Update todo 1's creation/updation date
+PATCH http://localhost:8080/todos/1
+Content-Type: application/json
+
+{
+    "updated_at": 3
+}
+
+
+### Update todo 1's title to number
+PATCH http://localhost:8080/todos/1
+Content-Type: application/json
+
+{
+    "title": 3
+}
+
+
+### Update todo 1's done to nothing
+PATCH http://localhost:8080/todos/1
+Content-Type: application/json
+
+{
+    "done": ,
+}
+
+

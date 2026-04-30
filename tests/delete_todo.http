@@ -1,0 +1,11 @@
+### Delete id 0
+DELETE http://localhost:8080/todos/0
+
+
+### Delete id -1
+DELETE http://localhost:8080/todos/-1
+
+
+### Delete id 's'
+DELETE http://localhost:8080/todos/s
+

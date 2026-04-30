@@ -1,0 +1,55 @@
+### Create todos
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+    "title": "Second todo",
+    "description": "Second todo is also test"
+}
+
+
+### Create without title
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+    "description": "This todo only has description."
+}
+
+
+### Create without description
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+    "title": "This todo only has title"
+}
+
+
+### Create without any fields
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+}
+
+
+### Create with invalid fileds
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+    "id": 34
+}
+
+
+### Create with invalid fileds and title
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+    "abc": 34,
+    "title": "This todo has an invalid field.",
+    "done": true
+}
+
