@@ -12,3 +12,9 @@ $ ./todo-server
 ```
 
 It runs in `8080` port.
+
+## Tasks to do
+- Fix bugs in updateTodo
+- Fix bugs in deleteTodo
+- Refactor into multiple component for ease of development
+- Write tests in Go tests (net/http/httptest)
