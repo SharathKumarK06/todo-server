@@ -13,6 +13,21 @@ Content-Type: application/json
 }
 
 
+### Get todos
+GET http://localhost:8080/todos
+Content-Type: application/json
+
+
+### Create todos
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+    "title": "Second todo",
+    "description": "Second todo is also test"
+}
+
+
 ### Update todo
 PATCH  http://localhost:8080/todos/3
 Content-Type: application/json
