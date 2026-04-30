@@ -43,6 +43,26 @@ func getTodos(c *gin.Context) {
 	c.JSON(http.StatusOK, todos)
 }
 
+func getOneTodo(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Invalid id",
+		})
+		return
+	}
+
+	todoIdx, err := getTodoIdx(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, todos[todoIdx])
+}
+
 func createTodo(c *gin.Context) {
 	var todo Todo
 	if err := c.ShouldBindJSON(&todo); err != nil {
@@ -145,6 +165,7 @@ func main() {
 
 	// Router
 	router.GET("/todos", getTodos)
+	router.GET("/todos/:id", getOneTodo)
 	router.POST("/todos", createTodo)
 	router.PATCH("/todos/:id", updateTodo)
 	router.DELETE("/todos/:id", deleteTodo)
