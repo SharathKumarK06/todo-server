@@ -30,7 +30,7 @@ func getTodoIdx(id int) (int, error) {
 		return -1, fmt.Errorf("Bad id %d!", id)
 	}
 
-	for i := 1; i < len(todos); i++ {
+	for i := 0; i < len(todos); i++ {
 		if id == todos[i].ID {
 			return i, nil
 		}
