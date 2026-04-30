@@ -96,6 +96,11 @@ func createTodo(c *gin.Context) {
 	c.JSON(http.StatusCreated, todo)
 }
 
+// TODO:
+//  1. Only update `updated_at` field if any field updated.
+//  2. Only fields that can be updated should respond with `202 accepted` others should respond with error.
+//  3. `title` field should not be able changed to empty
+//  4. Take `string` filed value as text even if it's number
 func updateTodo(c *gin.Context) {
 	var todo Todo
 	idStr := c.Param("id")
@@ -138,6 +143,8 @@ func updateTodo(c *gin.Context) {
 	c.JSON(http.StatusAccepted, oldTodo)
 }
 
+// TODO:
+//  1. Deleting id 0, -1 return no error message (err code 404)
 func deleteTodo(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
