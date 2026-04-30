@@ -128,7 +128,7 @@ func updateTodo(c *gin.Context) {
 	}
 	oldTodo := &todos[todoIdx]
 
-	// Update only if the field is provided (not nil)
+	// Update only if the field is provided (which is not `nil``)
 	if todo.Title != nil {
 		oldTodo.Title = todo.Title
 	}
