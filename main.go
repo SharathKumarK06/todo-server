@@ -15,11 +15,16 @@ var Id int = 1
 
 type Todo struct {
 	ID          int       `json:"id"`
-	Title       *string   `json:"title" binding:"required"`
+	Title       *string   `json:"title"`
 	Description *string   `json:"description"`
 	Done        *bool     `json:"done"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
+}
+
+type CreateTodoRequest struct {
+	Title       *string `json:"title" binding:"required,max=100"`
+	Description *string `json:"description"`
 }
 
 func stringPtr(s string) *string { return &s }
@@ -37,6 +42,19 @@ func getTodoIdx(id int) (int, error) {
 		}
 	}
 	return -1, fmt.Errorf("Todo with id %d not found!", id)
+}
+
+func createNewTodo(todo CreateTodoRequest) Todo {
+	newTodo := Todo{
+		ID:          Id,
+		Title:       todo.Title,
+		Description: todo.Description,
+		Done:        boolPtr(false),
+		CreatedAt:   time.Now(),
+		UpdatedAt:   time.Now(),
+	}
+	Id++
+	return newTodo
 }
 
 func getTodos(c *gin.Context) {
@@ -64,18 +82,15 @@ func getOneTodo(c *gin.Context) {
 }
 
 func createTodo(c *gin.Context) {
-	var todo Todo
-	if err := c.ShouldBindJSON(&todo); err != nil {
+	var requestTodo CreateTodoRequest
+	if err := c.ShouldBindJSON(&requestTodo); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Invalid request",
+			"error": err.Error(),
 		})
 		return
 	}
 
-	todo.ID = Id
-	Id++
-	todo.CreatedAt = time.Now()
-	todo.UpdatedAt = time.Now()
+	todo := createNewTodo(requestTodo)
 	todos = append(todos, todo)
 
 	c.JSON(http.StatusCreated, todo)
