@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"slices"
 	"strconv"
 	"time"
 
@@ -102,6 +103,31 @@ func updateTodo(c *gin.Context) {
 	c.JSON(http.StatusAccepted, oldTodo)
 }
 
+func deleteTodo(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Invalid id",
+		})
+		return
+	}
+
+	todoIdx, err := getTodoIdx(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": fmt.Errorf("Todo with id %d not found!", id),
+		})
+		return
+	}
+
+	todos = slices.Delete(todos, todoIdx, todoIdx+1)
+	c.JSON(http.StatusOK, gin.H{
+		"message": fmt.Sprintf("Todo with id %d is successfully deleted.", id),
+	})
+}
+
 func main() {
 	todo := Todo{
 		ID:          Id,
@@ -121,6 +147,7 @@ func main() {
 	router.GET("/todos", getTodos)
 	router.POST("/todos", createTodo)
 	router.PATCH("/todos/:id", updateTodo)
+	router.DELETE("/todos/:id", deleteTodo)
 
 	router.Run("localhost:8080")
 }
