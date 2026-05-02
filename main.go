@@ -44,19 +44,6 @@ func getTodoIdx(id int) (int, error) {
 	return -1, fmt.Errorf("Todo with id %d not found!", id)
 }
 
-func createNewTodo(todo CreateTodoRequest) Todo {
-	newTodo := Todo{
-		ID:          Id,
-		Title:       todo.Title,
-		Description: todo.Description,
-		Done:        boolPtr(false),
-		CreatedAt:   time.Now(),
-		UpdatedAt:   time.Now(),
-	}
-	Id++
-	return newTodo
-}
-
 func getTodos(c *gin.Context) {
 	c.JSON(http.StatusOK, todos)
 }
@@ -82,15 +69,23 @@ func getOneTodo(c *gin.Context) {
 }
 
 func createTodo(c *gin.Context) {
-	var requestTodo CreateTodoRequest
-	if err := c.ShouldBindJSON(&requestTodo); err != nil {
+	var req CreateTodoRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
 		return
 	}
 
-	todo := createNewTodo(requestTodo)
+	todo := Todo{
+		ID:          Id,
+		Title:       req.Title,
+		Description: req.Description,
+		Done:        boolPtr(false),
+		CreatedAt:   time.Now(),
+		UpdatedAt:   time.Now(),
+	}
+	Id++
 	todos = append(todos, todo)
 
 	c.JSON(http.StatusCreated, todo)
