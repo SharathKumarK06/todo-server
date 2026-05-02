@@ -103,13 +103,13 @@ func updateTodo(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Invalid id",
+			"error": err.Error(),
 		})
 	}
 
 	if err := c.ShouldBindJSON(&todo); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Invalid request",
+			"error": err.Error(),
 		})
 		return
 	}
@@ -117,7 +117,7 @@ func updateTodo(c *gin.Context) {
 	todoIdx, err := getTodoIdx(id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
-			"error": fmt.Sprintf("Todo with id %d not found!", id),
+			"error": err.Error(),
 		})
 		return
 	}
