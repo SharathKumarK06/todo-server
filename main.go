@@ -27,6 +27,12 @@ type CreateTodoRequest struct {
 	Description *string `json:"description"`
 }
 
+type UpdateTodoRequest struct {
+	Title       *string `json:"title" binding:"required,min=1,max=100"`
+	Description *string `json:"description,omitempty"`
+	Done        *bool   `json:"done,omitempty"`
+}
+
 func stringPtr(s string) *string { return &s }
 
 func boolPtr(b bool) *bool { return &b }
@@ -97,7 +103,7 @@ func createTodo(c *gin.Context) {
 //  3. `title` field should not be able changed to empty
 //  4. Take `string` filed value as text even if it's number
 func updateTodo(c *gin.Context) {
-	var todo Todo
+	var req UpdateTodoRequest
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 
@@ -105,9 +111,10 @@ func updateTodo(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
+		return
 	}
 
-	if err := c.ShouldBindJSON(&todo); err != nil {
+	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
@@ -122,18 +129,24 @@ func updateTodo(c *gin.Context) {
 		return
 	}
 	oldTodo := &todos[todoIdx]
+	updated := false
 
 	// Update only if the field is provided (which is not `nil``)
-	if todo.Title != nil {
-		oldTodo.Title = todo.Title
+	if req.Title != nil {
+		oldTodo.Title = req.Title
+		updated = true
 	}
-	if todo.Description != nil {
-		oldTodo.Description = todo.Description
+	if req.Description != nil {
+		oldTodo.Description = req.Description
+		updated = true
 	}
-	if todo.Done != nil {
-		oldTodo.Done = todo.Done
+	if req.Done != nil {
+		oldTodo.Done = req.Done
+		updated = true
 	}
-	oldTodo.UpdatedAt = time.Now()
+	if updated {
+		oldTodo.UpdatedAt = time.Now()
+	}
 
 	c.JSON(http.StatusAccepted, oldTodo)
 }
