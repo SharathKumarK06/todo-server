@@ -3,7 +3,10 @@ PATCH http://localhost:8080/todos/1
 Content-Type: application/json
 
 {
-    "title": "This is first todo"
+    "title": "This is first todo",
+    "description": "This is first todo's description",
+    "done": true
+
 }
 
 
@@ -25,6 +28,15 @@ Content-Type: application/json
 }
 
 
+### Try to null the `required` field `title`
+PATCH http://localhost:8080/todos/1
+Content-Type: application/json
+
+{
+    "title": null
+}
+
+
 ### Update todo 1's id
 PATCH http://localhost:8080/todos/1
 Content-Type: application/json
@@ -43,6 +55,16 @@ Content-Type: application/json
 }
 
 
+### Update todo 1's id
+PATCH http://localhost:8080/todos/1
+Content-Type: application/json
+
+{
+    "title": "todo 1",
+    "id": 3
+}
+
+
 ### Update todo 1's title to number
 PATCH http://localhost:8080/todos/1
 Content-Type: application/json
@@ -57,7 +79,7 @@ PATCH http://localhost:8080/todos/1
 Content-Type: application/json
 
 {
-    "done": ,
+    "done": 
 }
 
 
