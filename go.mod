@@ -1,4 +1,4 @@
-module todo-server
+module github.com/SharathKumarK06/todo-server
 
 go 1.25.0
 
