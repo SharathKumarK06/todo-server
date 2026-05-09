@@ -14,7 +14,16 @@ $ ./todo-server
 It runs in `8080` port.
 
 ## Tasks to do
+- Custom error messages
+- Consistent response json format
+- Fix bugs in getOneTodo
+    - Better error message
+    - When integer overflows: better error
+- Fix bugs in createTodo
+    - Create ignores invalid fields. Need better error
 - Fix bugs in updateTodo
+    - Update ignores invalid fields. Need better error
 - Fix bugs in deleteTodo
+    - When specifid id as character: better error message
 - Refactor into multiple component for ease of development
 - Write tests in Go tests (net/http/httptest)
