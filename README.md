@@ -26,3 +26,5 @@ It runs in `8080` port.
 - Fix bugs in deleteTodo
     - When specifid id as character: better error message
 - Write tests in Go tests (net/http/httptest)
+- Add multiple roles
+- Add authentication
