@@ -25,5 +25,4 @@ It runs in `8080` port.
     - Update ignores invalid fields. Need better error
 - Fix bugs in deleteTodo
     - When specifid id as character: better error message
-- Refactor into multiple component for ease of development
 - Write tests in Go tests (net/http/httptest)
