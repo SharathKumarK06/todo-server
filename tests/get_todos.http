@@ -1,3 +1,39 @@
-### Get all todos
-GET http://localhost:8080/todos
+@baseURL = http://localhost:8080/todos
+
+###
+# Get all todos
+GET {{baseURL}}
 Content-Type: application/json
+
+
+###
+# Get one todo by id 1
+GET {{baseURL}}/1
+Content-Type: application/json
+
+
+###
+# Get one todo by id 2
+GET {{baseURL}}/2
+Content-Type: application/json
+
+
+### Get One todo by id 9223372036854775808
+GET {{baseURL}}/9223372036854775808
+Content-Type: application/json
+
+
+### Get One todo by id 9223372036854775808
+GET {{baseURL}}/-1
+Content-Type: application/json
+
+
+### Get One todo by id 'c'
+GET {{baseURL}}/c
+Content-Type: application/json
+
+
+### Get One todo by id 'sfsf'
+GET {{baseURL}}/sfsf
+Content-Type: application/json
+

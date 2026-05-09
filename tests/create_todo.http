@@ -1,14 +1,29 @@
-### Create todos
-POST http://localhost:8080/todos
+@baseURL = http://localhost:8080/todos
+
+###
+# Get all todos
+GET {{baseURL}}
+
+
+###
+# Create todo
+POST {{baseURL}}
 Content-Type: application/json
 
 {
-    "title": "Second todo",
-    "description": "Second todo is also test"
+    "title": "Learn Go",
+    "description": "I want to learn and master Go",
+    "completed": false
 }
 
 
-### Create without title
+###
+# Get all todos
+GET {{baseURL}}
+
+
+###
+# Create without title
 POST http://localhost:8080/todos
 Content-Type: application/json
 
@@ -17,8 +32,9 @@ Content-Type: application/json
 }
 
 
-### Create without description
-POST http://localhost:8080/todos
+###
+# Create without description
+POST {{baseURL}}
 Content-Type: application/json
 
 {
@@ -26,16 +42,18 @@ Content-Type: application/json
 }
 
 
-### Create without any fields
-POST http://localhost:8080/todos
+###
+# Create without any fields
+POST {{baseURL}}
 Content-Type: application/json
 
 {
 }
 
 
-### Create with invalid fileds
-POST http://localhost:8080/todos
+###
+# Create with invalid fileds
+POST {{baseURL}}
 Content-Type: application/json
 
 {
@@ -44,7 +62,7 @@ Content-Type: application/json
 
 
 ### Create with invalid fileds and title
-POST http://localhost:8080/todos
+POST {{baseURL}}
 Content-Type: application/json
 
 {
@@ -52,4 +70,9 @@ Content-Type: application/json
     "title": "This todo has an invalid field.",
     "done": true
 }
+
+
+###
+# Get all todos
+GET {{baseURL}}
 

@@ -1,5 +1,14 @@
-### Update title of todo 1
-PATCH http://localhost:8080/todos/1
+@baseURL = http://localhost:8080/todos
+
+###
+# Get all todos
+GET {{baseURL}}
+Content-Type: application/json
+
+
+###
+# Update todo 3's title
+PATCH {{baseURL}}/3
 Content-Type: application/json
 
 {
@@ -10,17 +19,23 @@ Content-Type: application/json
 }
 
 
+###
+# Get all todos
+GET {{baseURL}}
+Content-Type: application/json
+
+
 ### Update todo 1's 'done' status
-PATCH http://localhost:8080/todos/1
+PATCH {{baseURL}}/1
 Content-Type: application/json
 
 {
-    "done": false
+    "done": true
 }
 
 
 ### Try to empty the `required` field `title`
-PATCH http://localhost:8080/todos/1
+PATCH {{baseURL}}/1
 Content-Type: application/json
 
 {
