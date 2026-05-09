@@ -15,6 +15,7 @@ It runs in `8080` port.
 
 ## Tasks to do
 - Implement repository for db (PostgreSQL - Docker)
+- Seperate http request handler to `handler` package
 - Authentication (JWT, OAuth2) & Authorization
 - Proper validation of fields
 - Custom error messages
