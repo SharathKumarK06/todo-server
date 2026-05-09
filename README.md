@@ -14,6 +14,7 @@ $ ./todo-server
 It runs in `8080` port.
 
 ## Tasks to do
+- Proper validation of fields
 - Custom error messages
 - Consistent response json format
 - Fix bugs in getOneTodo
