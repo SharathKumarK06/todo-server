@@ -15,6 +15,7 @@ It runs in `8080` port.
 
 ## Tasks to do
 - Implement repository for db (PostgreSQL - Docker)
+- Use docker-compose.yml to control container
 - Seperate http request handler to `handler` package
 - Authentication (JWT, OAuth2) & Authorization
 - Proper validation of fields
@@ -29,6 +30,7 @@ It runs in `8080` port.
     - Update ignores invalid fields. Need better error
 - Fix bugs in deleteTodo
     - When specifid id as character: better error message
+- Seperate business logic form handler and repository
 - Write tests in Go tests (net/http/httptest)
 - Add multiple roles
 - Add authentication
