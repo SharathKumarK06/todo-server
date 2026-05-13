@@ -3,3 +3,9 @@ todo.http
 
 # todo-server binary
 todo-server
+
+# Credentials
+.env
+
+# Script to control container
+db_container.sh
