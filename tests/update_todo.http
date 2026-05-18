@@ -12,7 +12,7 @@ PATCH {{baseURL}}/3
 Content-Type: application/json
 
 {
-    "title": "This is first todo",
+    "title": "This is the third todo",
     "description": "This is first todo's description",
     "done": true
 
