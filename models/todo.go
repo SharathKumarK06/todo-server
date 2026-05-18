@@ -5,7 +5,7 @@ import (
 )
 
 type Todo struct {
-	ID          int       `json:"id"`
+	ID          int       `json:"id" gorm:"primaryKey"` // gorm `autoIncrement` is enable for `primaryKey` by default
 	Title       string    `json:"title"`
 	Description string    `json:"description"`
 	Done        bool      `json:"done"`

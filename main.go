@@ -5,12 +5,14 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/SharathKumarK06/todo-server/config"
 	"github.com/SharathKumarK06/todo-server/models"
 	"github.com/SharathKumarK06/todo-server/repository"
 	"github.com/gin-gonic/gin"
 )
 
-var repo = repository.NewInMemoryRepo()
+// var repo = repository.NewInMemoryRepo()
+var repo repository.PostgresRepo
 
 func getTodos(c *gin.Context) {
 	todos, err := repo.List()
@@ -51,12 +53,13 @@ func createTodo(c *gin.Context) {
 	}
 
 	todo := models.Todo{}
-	if *req.Title != "" {
+	if req.Title != nil && *req.Title != "" {
 		todo.Title = *req.Title
 	}
 	if req.Description != nil {
 		todo.Description = *req.Description
 	}
+	fmt.Println(todo)
 	todo, err := repo.Create(todo)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -133,6 +136,16 @@ func deleteTodo(c *gin.Context) {
 }
 
 func main() {
+	db, err := config.NewPostgresDB()
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Create tables automatically
+	db.AutoMigrate(&models.Todo{})
+
+	repo = *repository.NewPostgresRepo(db)
 
 	router := gin.Default()
 	fmt.Println("Server started...")
